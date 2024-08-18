@@ -1,0 +1,100 @@
+composer create-project laravel/laravel online_school
+
+
+db 
+
+online_school
+ 
+utf8mb4_unicode_ci
+
+cd online_school 
+  composer require laravel/breeze --dev
+
+php artisan breeze:install
+
+ npm install && npm run dev
+
+composer require santigarcor/laratrust
+
+php artisan vendor:publish --tag="laratrust"
+
+php artisan laratrust:setup
+
+php artisan laratrust:seeder	
+
+php artisan vendor:publish --tag="laratrust-seeder"
+
+composer dump-autoload
+
+in/In the database/seeds/DatabaseSeeder.php file you have to add this to the run method:
+ $this->call(LaratrustSeeder::class);
+ 
+ config the file in config/laratrust-seeder
+ 
+ php artisan migrate
+ 
+ php artisan db:seed
+ 
+ in app/http/controllers/auth/registeredusercontroller.php 
+   $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+  $user->attachRole("guest");
+  
+  
+  php artisan make:migration create_levels_table --create=levels
+  
+  php artisan migrate
+  
+   php artisan make:controller LevelsController --resource --model=levels  
+   
+   php artisan make:migration create_settings_table --create=settings
+  
+  php artisan migrate
+  
+   php artisan make:controller settingsController --resource --model=settings
+   
+   
+   php artisan make:migration add_order_field_parts_table --table=parts
+  
+     
+	 
+	 /////////////////// infyom instalation
+	 in composer.json
+	  "infyomlabs/laravel-generator": "^3.0",
+        "laravelcollective/html": "^6.2",
+        "infyomlabs/coreui-templates": "^8.0"
+		
+		in config/app.php add alias
+		
+	update    'templates'         => 'coreui-templates',
+	in config/infyom/laravel-generator
+	
+	
+	php artisan infyom.publish:layout 
+	
+	
+	without builder 
+	---------------------------------
+	php artisan infyom:scaffold Category
+	
+	//rollback migration
+ php artisan migrate:rollback --step=1
+ 
+ 
+      php artisan make:controller Main_Page_Controller 
+	  
+	  
+					
+					
+					      php artisan make:controller userController
+					
+					
+					
+					
+					alter table  `users` add token text
+					
+					  
+					    php artisan make:migration add_fields_settings_table --table=settings
